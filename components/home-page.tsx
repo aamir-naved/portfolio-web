@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
 import { about, contact, experience, hero, projects, skills } from "@/assets/site-content";
 import { ContactForm } from "@/components/contact-form";
 import {
@@ -18,20 +17,6 @@ import { NotebookButton } from "@/components/notebook-button";
 import { NotebookSheet } from "@/components/notebook-sheet";
 import { ProjectCard } from "@/components/project-card";
 import { Reveal } from "@/components/reveal";
-
-function PortraitCard() {
-  return (
-    <div className="portrait-card">
-      <Image
-        src="/images/aamir-portrait-notebook.png"
-        alt="Illustrated portrait of Aamir Naved"
-        fill
-        sizes="(max-width: 768px) 240px, 320px"
-        className="object-cover object-center"
-      />
-    </div>
-  );
-}
 
 function Twinkle({ className = "", delay = 0 }: { className?: string; delay?: number }) {
   return (
@@ -183,11 +168,27 @@ export function HomePage() {
                   <ArrowDoodle className="w-full" />
                 </motion.div>
                 <motion.div
-                  className="sketch-frame rotate-[1.8deg] p-4"
+                  className="rotate-[1.8deg]"
                   animate={{ y: [0, -4, 0] }}
                   transition={{ duration: 4.4, repeat: Infinity, ease: "easeInOut" }}
                 >
-                  <PortraitCard />
+                  <div className="sketch-frame flex min-h-[320px] w-[280px] flex-col justify-between p-5 sm:w-[320px]">
+                    <div className="flex items-center justify-between">
+                      <Twinkle className="w-7 rotate-[-12deg]" delay={0.3} />
+                      <span className="micro-caption">backend notes</span>
+                      <Twinkle className="w-7 rotate-[12deg]" delay={1.1} />
+                    </div>
+                    <div className="space-y-4">
+                      <div className="mini-note rotate-[-1deg]">Java + Spring</div>
+                      <div className="mini-note rotate-[1deg]">Cloud + AI</div>
+                      <div className="mini-note rotate-[-0.5deg]">Reliable systems</div>
+                    </div>
+                    <div className="flex items-center justify-between gap-3">
+                      <BulbDoodle className="w-14 rotate-[-8deg]" />
+                      <CloudDoodle className="w-20 rotate-[6deg]" />
+                      <RocketDoodle className="w-12 rotate-[10deg]" />
+                    </div>
+                  </div>
                 </motion.div>
               </div>
             </div>
