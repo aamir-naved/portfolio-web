@@ -1,0 +1,50 @@
+@import "@fontsource/patrick-hand";
+@import "@fontsource/caveat/700.css";
+@import "tailwindcss";
+@import "../styles/notebook.css";
+@import "../styles/utilities.css";
+
+:root {
+  --paper-base: #f4ecd9;
+  --paper-deep: #e6d7bb;
+  --ink: #231f1b;
+  --muted-ink: #5a4f45;
+  --line-blue: rgba(95, 137, 185, 0.35);
+  --line-red: rgba(190, 88, 82, 0.45);
+  --shadow-warm: #a38e6e;
+  --body-font: "Patrick Hand", "Segoe Print", "Comic Sans MS", cursive;
+  --heading-font: "Caveat", "Patrick Hand", "Segoe Print", cursive;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--ink);
+  font-family: var(--body-font), sans-serif;
+  font-size: 1.12rem;
+  line-height: 1.45;
+  background:
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.45), transparent 26%),
+    radial-gradient(circle at 20% 20%, rgba(171, 145, 109, 0.08), transparent 18%),
+    radial-gradient(circle at 80% 30%, rgba(171, 145, 109, 0.08), transparent 16%),
+    linear-gradient(180deg, rgba(244, 236, 217, 0.97), rgba(239, 228, 201, 0.96));
+}
+
+* {
+  box-sizing: border-box;
+}
+
+button,
+input,
+textarea {
+  font-family: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}

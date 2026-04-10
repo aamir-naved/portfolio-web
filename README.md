@@ -1,6 +1,6 @@
 # Aamir Naved Portfolio
 
-A single-page, notebook-style personal portfolio built with Next.js App Router, React, Tailwind CSS, and Framer Motion.
+A single-page, notebook-style portfolio built with Next.js App Router, React, Tailwind CSS, and Framer Motion. The site uses a hand-drawn paper aesthetic, section-by-section scrolling, subtle doodle motion, and resume-driven content.
 
 ## Stack
 
@@ -23,7 +23,6 @@ portfolio/
 ├── components/
 │   ├── contact-form.tsx
 │   ├── doodles.tsx
-│   ├── floating-nav.tsx
 │   ├── home-page.tsx
 │   ├── notebook-button.tsx
 │   ├── notebook-sheet.tsx
@@ -58,11 +57,26 @@ npm run build
 npm start
 ```
 
+## What Is Included
+
+- single long-scroll portfolio layout with one notebook-style section at a time
+- locally bundled handwriting fonts
+- subtle section-specific animations and doodle motion
+- resume download from `public/resume/aamir-naved-resume.pdf`
+- contact section that opens the user’s email client with `mailto:`
+
 ## Customize Content
 
 - Update portfolio text and section data in `assets/site-content.ts`
 - Replace the resume at `public/resume/aamir-naved-resume.pdf`
 - Adjust notebook styling in `styles/notebook.css`
+- Extend doodles and motion in `components/doodles.tsx` and `components/home-page.tsx`
+
+## Git / Push Notes
+
+- `package-lock.json` should be committed
+- `.next/`, `node_modules/`, `.vercel/`, and local `.env*` files are ignored
+- the repo is ready to push without build artifacts or dependency directories
 
 ## Deploy To Vercel
 
@@ -83,6 +97,5 @@ vercel
 ## Notes
 
 - The production build uses Webpack explicitly to avoid Turbopack sandbox issues that can appear in restricted environments.
-- The site uses local/system font stacks to avoid build-time dependency on remote font downloads.
+- The site uses locally installed font packages to avoid build-time dependency on remote font downloads.
 - The contact form opens the user’s email client via `mailto:` for a lightweight, no-backend setup.
-# portfolio-web
