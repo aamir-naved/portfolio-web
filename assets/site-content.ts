@@ -17,6 +17,11 @@ export const about = {
   ],
 };
 
+/**
+ * Client quotes for the testimonials rail. To add one: push a new object with the same
+ * shape—`quote`, `name`, `role`, `projectTag` (short topic line). Cards scroll sideways,
+ * so the section stays compact no matter how many you add.
+ */
 export const testimonials = [
   {
     quote:

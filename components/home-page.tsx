@@ -17,6 +17,7 @@ import {
   ServerStackDoodle,
   TerminalDoodle,
 } from "@/components/doodles";
+import { ContactQuickActions } from "@/components/contact-quick-actions";
 import { NotebookButton } from "@/components/notebook-button";
 import { NotebookSheet } from "@/components/notebook-sheet";
 import { ProjectCard } from "@/components/project-card";
@@ -350,21 +351,31 @@ export function HomePage() {
                 Names and org details are kept light here—happy to share references when we talk about your project.
               </div>
             </div>
-            <div className="testimonial-grid">
-              {testimonials.map((t, index) => (
-                <blockquote
-                  key={`${t.name}-${index}`}
-                  className="testimonial-card m-0"
-                  style={{ transform: `rotate(${index % 2 === 0 ? "-0.4deg" : "0.45deg"})` }}
-                >
-                  <p className="testimonial-card__quote">{t.quote}</p>
-                  <footer className="testimonial-card__meta">
-                    <span className="testimonial-card__name">{t.name}</span>
-                    <span className="testimonial-card__role">{t.role}</span>
-                    <span className="testimonial-card__tag">{t.projectTag}</span>
-                  </footer>
-                </blockquote>
-              ))}
+            <div className="testimonial-rail">
+              <div
+                className="testimonial-rail__track"
+                tabIndex={0}
+                role="region"
+                aria-label="Client testimonials—scroll sideways for more"
+              >
+                {testimonials.map((t, index) => (
+                  <div
+                    key={`${t.name}-${index}`}
+                    className="testimonial-rail__card"
+                    style={{ transform: `rotate(${index % 2 === 0 ? "-0.4deg" : "0.45deg"})` }}
+                  >
+                    <blockquote className="testimonial-card m-0 h-full">
+                      <p className="testimonial-card__quote">{t.quote}</p>
+                      <footer className="testimonial-card__meta">
+                        <span className="testimonial-card__name">{t.name}</span>
+                        <span className="testimonial-card__role">{t.role}</span>
+                        <span className="testimonial-card__tag">{t.projectTag}</span>
+                      </footer>
+                    </blockquote>
+                  </div>
+                ))}
+              </div>
+              <p className="testimonial-rail__hint micro-caption">Swipe or scroll sideways for more</p>
             </div>
             <div className="doodle-divider mt-8">
               <div className="dash" />
@@ -375,7 +386,7 @@ export function HomePage() {
         </Reveal>
 
         <Reveal delay={0.25}>
-          <NotebookSheet id="contact" title="Contact Me" className="mx-auto max-w-6xl">
+          <NotebookSheet id="contact" title="Get in touch" className="mx-auto max-w-6xl">
             <hr className="section-rule" />
             <div className="mb-6 flex flex-wrap items-center justify-between gap-4">
               <div className="mini-note rotate-[-0.8deg]">Let&apos;s build something useful.</div>
@@ -394,6 +405,7 @@ export function HomePage() {
                   <span className="contact-icon bg-[#bcd1eb]">✉</span>
                   <span>{contact.email}</span>
                 </a>
+                <ContactQuickActions className="rounded-xl border-2 border-dashed border-[#c4b8a0] bg-[#fbf7ee]/80 p-3" />
                 <a href={`https://${contact.linkedin}`} target="_blank" rel="noreferrer" className="contact-row">
                   <span className="contact-icon bg-[#8aa6d9]">in</span>
                   <span>{contact.linkedin}</span>
@@ -434,8 +446,8 @@ export function HomePage() {
 
               <div>
                 <p className="mb-4 text-[1.3rem] leading-8 text-[#3d352f] sm:text-[1.65rem] sm:leading-9">
-                  If you&apos;re building systems that need dependable backend foundations, thoughtful APIs, practical
-                  GenAI features, or a Flutter freelance partner for a mobile product—let&apos;s talk.
+                  Whether it&apos;s backend work, APIs, cloud and GenAI projects, or a Flutter build—if it sounds like a
+                  fit, I&apos;d love to hear from you.
                 </p>
                 <ContactForm />
                 <div className="mt-5 flex flex-wrap items-center justify-between gap-4">
