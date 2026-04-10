@@ -1,0 +1,326 @@
+/**
+ * Decorative doodle motion off the main thread where possible.
+ * Framer Motion was driving ~25+ infinite loops — each frame scheduled JS updates.
+ */
+
+.doodle-twinkle {
+  animation: doodle-twinkle-kf 2.8s ease-in-out infinite;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+@keyframes doodle-twinkle-kf {
+  0%,
+  100% {
+    opacity: 0.65;
+    transform: translateZ(0) scale(0.96);
+  }
+  50% {
+    opacity: 1;
+    transform: translateZ(0) scale(1.04);
+  }
+}
+
+.doodle-drift {
+  --doodle-drift-x: 8px;
+  animation: doodle-drift-kf 6s ease-in-out infinite;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+@keyframes doodle-drift-kf {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(var(--doodle-drift-x), -4px, 0);
+  }
+}
+
+.doodle-bob-md {
+  animation: doodle-bob-md-kf 4.8s ease-in-out infinite;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+@keyframes doodle-bob-md-kf {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate3d(0, -6px, 0) rotate(1.2deg);
+  }
+}
+
+.doodle-bob-sm {
+  animation: doodle-bob-sm-kf 4.4s ease-in-out infinite;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+@keyframes doodle-bob-sm-kf {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -4px, 0);
+  }
+}
+
+.doodle-bob-xs {
+  animation: doodle-bob-xs-kf 3.6s ease-in-out infinite;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+@keyframes doodle-bob-xs-kf {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -3px, 0);
+  }
+}
+
+.doodle-sway-x {
+  animation: doodle-sway-x-kf 4.2s ease-in-out infinite;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+@keyframes doodle-sway-x-kf {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(6px, 0, 0);
+  }
+}
+
+.doodle-sway-x-sm {
+  animation: doodle-sway-x-sm-kf 3.6s ease-in-out infinite;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+@keyframes doodle-sway-x-sm-kf {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(5px, 0, 0);
+  }
+}
+
+.doodle-sway-x-wide {
+  animation: doodle-sway-x-wide-kf 4s ease-in-out infinite;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+@keyframes doodle-sway-x-wide-kf {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(5px, 0, 0);
+  }
+}
+
+.doodle-sway-x-neg {
+  animation: doodle-sway-x-neg-kf 4.2s ease-in-out infinite;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+@keyframes doodle-sway-x-neg-kf {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(-5px, 0, 0);
+  }
+}
+
+.doodle-plane {
+  animation: doodle-plane-kf 4.6s ease-in-out infinite;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+@keyframes doodle-plane-kf {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(8deg);
+  }
+  50% {
+    transform: translate3d(8px, -3px, 0) rotate(12deg);
+  }
+}
+
+.doodle-plane-sm {
+  animation: doodle-plane-sm-kf 4.4s ease-in-out infinite;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+@keyframes doodle-plane-sm-kf {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(14deg);
+  }
+  50% {
+    transform: translate3d(6px, -3px, 0) rotate(18deg);
+  }
+}
+
+.doodle-plane-wiggle {
+  animation: doodle-plane-wiggle-kf 4s ease-in-out infinite;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+@keyframes doodle-plane-wiggle-kf {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) translate(0, 0);
+  }
+  50% {
+    transform: translate3d(5px, -2px, 0);
+  }
+}
+
+.doodle-laptop-float {
+  animation: doodle-laptop-float-kf 4.8s ease-in-out infinite;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+@keyframes doodle-laptop-float-kf {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -3px, 0);
+  }
+}
+
+.doodle-pulse-op {
+  animation: doodle-pulse-op-kf 2.8s ease-in-out infinite;
+}
+
+@keyframes doodle-pulse-op-kf {
+  0%,
+  100% {
+    opacity: 0.65;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.doodle-pulse-op-alt {
+  animation: doodle-pulse-op-alt-kf 3.1s ease-in-out infinite;
+  animation-delay: 0.6s;
+}
+
+@keyframes doodle-pulse-op-alt-kf {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.65;
+  }
+}
+
+.doodle-pulse-op-alt2 {
+  animation: doodle-pulse-op-alt2-kf 2.5s ease-in-out infinite;
+  animation-delay: 1s;
+}
+
+@keyframes doodle-pulse-op-alt2-kf {
+  0%,
+  100% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.doodle-spark-gold {
+  animation: doodle-spark-gold-kf 2.2s ease-in-out infinite;
+}
+
+@keyframes doodle-spark-gold-kf {
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.doodle-spark-blue {
+  animation: doodle-spark-blue-kf 2.8s ease-in-out infinite;
+  animation-delay: 0.7s;
+}
+
+@keyframes doodle-spark-blue-kf {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.45;
+  }
+}
+
+.doodle-badge-up {
+  animation: doodle-badge-up-kf 3s ease-in-out infinite;
+  transform: translateZ(0);
+}
+
+@keyframes doodle-badge-up-kf {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -2px, 0);
+  }
+}
+
+.doodle-badge-down {
+  animation: doodle-badge-down-kf 3.4s ease-in-out infinite;
+  transform: translateZ(0);
+}
+
+@keyframes doodle-badge-down-kf {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, 2px, 0);
+  }
+}
+
+.doodle-badge-up-slow {
+  animation: doodle-badge-up-kf 3.8s ease-in-out infinite;
+}
+
+.doodle-badge-down-slow {
+  animation: doodle-badge-down-kf 4.2s ease-in-out infinite;
+}

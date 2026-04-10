@@ -25,7 +25,9 @@ export function ContactForm() {
   return (
     <motion.form
       onSubmit={handleSubmit}
-      whileHover={{ rotate: -0.35 }}
+      initial={{ opacity: 0.96, y: 6 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
       className="sketch-panel mx-auto flex max-w-md flex-col gap-4 p-5"
     >
       <input name="name" placeholder="Name" required className="sketch-input" />

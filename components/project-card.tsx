@@ -1,6 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { memo, useMemo } from "react";
+import { hoverTilt } from "@/lib/animations";
 import { ArrowDoodle, SparkDoodle } from "@/components/doodles";
 import { NotebookButton } from "@/components/notebook-button";
 
@@ -8,44 +10,48 @@ type ProjectCardProps = {
   name: string;
   description: string;
   tech: readonly string[];
-  accent: string;
+  tilt: number;
 };
 
-export function ProjectCard({ name, description, tech, accent }: ProjectCardProps) {
+export const ProjectCard = memo(function ProjectCard({ name, description, tech, tilt }: ProjectCardProps) {
+  const variants = useMemo(() => hoverTilt(tilt), [tilt]);
+
   return (
     <motion.article
-      whileHover={{ y: -6, rotate: 0.35 }}
-      transition={{ duration: 0.2 }}
-      className={`sketch-panel p-5 ${accent}`}
+      variants={variants}
+      initial="rest"
+      whileHover="hover"
+      whileTap="tap"
+      className="sketch-panel p-5 md:p-6"
     >
-      <div className="mb-5 grid gap-5 md:grid-cols-[1.1fr_0.9fr]">
-        <div>
+      <div className="mb-6 grid gap-6 md:grid-cols-[1.1fr_0.9fr] md:gap-7">
+        <div className="space-y-3">
           <div className="project-sketch-strip">
             <span className="project-sketch-chip">☑ backend</span>
             <span className="project-sketch-chip">✎ product thinking</span>
             <span className="project-sketch-chip">↗ real use case</span>
           </div>
-          <h3 className="handwritten mb-2 text-4xl leading-[0.95] text-[#1f1a17]">{name}</h3>
-          <p className="text-[1.15rem] leading-8 text-[#3b352f]">{description}</p>
+          <h3 className="handwritten text-4xl leading-[0.95] text-[#1f1a17] sm:text-[2.65rem]">{name}</h3>
+          <p className="body-copy text-[1.08rem] text-[#3b352f] sm:text-[1.18rem]">{description}</p>
         </div>
-        <div className="relative">
+        <div className="relative min-h-[200px]">
           <SparkDoodle className="absolute -left-2 -top-2 w-8 rotate-[-8deg]" />
           <ArrowDoodle className="absolute -bottom-3 right-8 w-24 rotate-[6deg]" />
           <div className="laptop-sketch">
-          <div className="screen">
-            <div className="screen-line w-1/3" />
-            <div className="screen-line w-4/5" />
-            <div className="mt-3 grid grid-cols-[1.2fr_0.8fr] gap-2">
-              <div className="screen-card h-12" />
-              <div className="screen-card h-12 bg-[#f0d47b]" />
+            <div className="screen">
+              <div className="screen-line w-1/3" />
+              <div className="screen-line w-4/5" />
+              <div className="mt-3 grid grid-cols-[1.2fr_0.8fr] gap-2">
+                <div className="screen-card h-12" />
+                <div className="screen-card h-12 bg-[#f0d47b]" />
+              </div>
+              <div className="screen-line mt-3 w-2/3" />
             </div>
-            <div className="screen-line mt-3 w-2/3" />
+            <div className="keyboard" />
           </div>
-          <div className="keyboard" />
-        </div>
         </div>
       </div>
-      <div className="mb-5 flex flex-wrap gap-3">
+      <div className="mb-5 flex flex-wrap gap-2.5 sm:gap-3">
         {tech.map((item) => (
           <span key={item} className="tag-pill">
             {item}
@@ -57,4 +63,4 @@ export function ProjectCard({ name, description, tech, accent }: ProjectCardProp
       </NotebookButton>
     </motion.article>
   );
-}
+});

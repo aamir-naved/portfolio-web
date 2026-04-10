@@ -1,8 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
+import dynamic from "next/dynamic";
+import type { CSSProperties } from "react";
 import { about, contact, experience, hero, projects, skills } from "@/assets/site-content";
-import { ContactForm } from "@/components/contact-form";
 import {
   ArrowDoodle,
   BulbDoodle,
@@ -16,17 +17,27 @@ import {
 import { NotebookButton } from "@/components/notebook-button";
 import { NotebookSheet } from "@/components/notebook-sheet";
 import { ProjectCard } from "@/components/project-card";
-import { Reveal } from "@/components/reveal";
+import { Reveal, StaggerGroup, useStaggerChildVariants } from "@/components/reveal";
+
+const ContactForm = dynamic(
+  () => import("@/components/contact-form").then((m) => m.ContactForm),
+  {
+    ssr: true,
+    loading: () => (
+      <div className="sketch-panel mx-auto flex min-h-[260px] max-w-md animate-pulse flex-col gap-3 p-5">
+        <div className="sketch-input h-[3.25rem] border-[#dccfb8] bg-[#f0e8d8]" />
+        <div className="sketch-input h-[3.25rem] border-[#dccfb8] bg-[#f0e8d8]" />
+        <div className="sketch-input h-[8.5rem] resize-none border-[#dccfb8] bg-[#f0e8d8]" />
+      </div>
+    ),
+  },
+);
 
 function Twinkle({ className = "", delay = 0 }: { className?: string; delay?: number }) {
   return (
-    <motion.div
-      className={className}
-      animate={{ opacity: [0.45, 1, 0.55], scale: [0.92, 1.08, 0.95], rotate: [-6, 4, -6] }}
-      transition={{ duration: 2.8, delay, repeat: Infinity, ease: "easeInOut" }}
-    >
+    <div className={`doodle-twinkle ${className}`} style={{ animationDelay: `${delay}s` }}>
       <SparkDoodle className="w-full" />
-    </motion.div>
+    </div>
   );
 }
 
@@ -40,89 +51,104 @@ function FloatCloud({
   distance?: number;
 }) {
   return (
-    <motion.div
-      className={className}
-      animate={{ x: [0, distance, 0], y: [0, -4, 0] }}
-      transition={{ duration: 6, delay, repeat: Infinity, ease: "easeInOut" }}
+    <div
+      className={`doodle-drift ${className}`}
+      style={
+        {
+          animationDelay: `${delay}s`,
+          "--doodle-drift-x": `${distance}px`,
+        } as CSSProperties
+      }
     >
       <CloudDoodle className="w-full" />
-    </motion.div>
+    </div>
   );
 }
 
 export function HomePage() {
+  const staggerChild = useStaggerChildVariants();
+
   return (
     <div className="relative mx-auto max-w-[88rem] px-4 py-6 sm:px-6 lg:px-10 lg:py-10">
-      <div className="margin-doodles hidden xl:block">
-        <SparkDoodle className="left-[3.5vw] top-24 w-12 rotate-[-12deg]" />
-        <CloudDoodle className="left-[1.5vw] top-[28rem] w-40 rotate-[-7deg]" />
-        <PaperPlaneDoodle className="left-[4vw] top-[60rem] w-24 rotate-[-16deg]" />
-        <SparkDoodle className="left-[7vw] top-[94rem] w-10 rotate-[10deg]" />
-        <BulbDoodle className="left-[2vw] top-[122rem] w-14 rotate-[-14deg]" />
-        <CloudDoodle className="left-[0.5vw] top-[150rem] w-36 rotate-[5deg]" />
-        <PaperPlaneDoodle className="left-[5vw] top-[183rem] w-24 rotate-[10deg]" />
-        <SparkDoodle className="left-[6vw] top-[214rem] w-11 rotate-[-6deg]" />
-        <CloudDoodle className="right-[2vw] top-[22rem] w-36 rotate-[8deg]" />
-        <SparkDoodle className="right-[5vw] top-[42rem] w-12 rotate-[18deg]" />
-        <RocketDoodle className="right-[4vw] top-[74rem] w-16 rotate-[22deg]" />
-        <PaperPlaneDoodle className="right-[2vw] top-[108rem] w-28 rotate-[12deg]" />
-        <DatabaseDoodle className="right-[3vw] top-[136rem] w-14 rotate-[-10deg]" />
-        <CloudDoodle className="right-[1vw] top-[166rem] w-34 rotate-[-8deg]" />
-        <RocketDoodle className="right-[5vw] top-[196rem] w-14 rotate-[16deg]" />
-        <SparkDoodle className="right-[6vw] top-[226rem] w-10 rotate-[10deg]" />
-        <div className="scribble-swoosh left-[4vw] top-[15rem] h-16 w-36 rotate-[12deg]" />
-        <div className="scribble-swoosh right-[4vw] top-[88rem] h-20 w-40 rotate-[-12deg]" />
-        <div className="scribble-swoosh left-[3vw] top-[145rem] h-16 w-32 rotate-[-8deg]" />
-        <div className="scribble-swoosh right-[3vw] top-[205rem] h-20 w-36 rotate-[8deg]" />
+      <div className="margin-doodles hidden xl:block" aria-hidden="true">
+        {/* Percentage `top` tracks full page height (skills → experience → contact included) */}
+        <SparkDoodle className="left-[3.5vw] top-[5%] w-12 rotate-[-12deg]" />
+        <CloudDoodle className="left-[1.2vw] top-[14%] w-40 rotate-[-7deg]" />
+        <PaperPlaneDoodle className="left-[4.2vw] top-[24%] w-24 rotate-[-16deg]" />
+        <SparkDoodle className="left-[6.5vw] top-[33%] w-10 rotate-[10deg]" />
+        <BulbDoodle className="left-[2vw] top-[42%] w-14 rotate-[-14deg]" />
+        <CloudDoodle className="left-[0.6vw] top-[52%] w-36 rotate-[5deg]" />
+        <PaperPlaneDoodle className="left-[4.8vw] top-[62%] w-24 rotate-[10deg]" />
+        <DatabaseDoodle className="left-[3vw] top-[71%] w-14 rotate-[-11deg]" />
+        <CloudDoodle className="left-[1.5vw] top-[80%] w-32 rotate-[-6deg]" />
+        <RocketDoodle className="left-[5vw] top-[89%] w-16 rotate-[18deg]" />
+        <SparkDoodle className="left-[7vw] top-[96%] w-11 rotate-[-6deg]" />
+
+        <CloudDoodle className="right-[1.8vw] top-[8%] w-36 rotate-[8deg]" />
+        <SparkDoodle className="right-[5vw] top-[17%] w-12 rotate-[18deg]" />
+        <RocketDoodle className="right-[4vw] top-[26%] w-16 rotate-[22deg]" />
+        <PaperPlaneDoodle className="right-[2.2vw] top-[36%] w-28 rotate-[12deg]" />
+        <DatabaseDoodle className="right-[3.2vw] top-[45%] w-14 rotate-[-10deg]" />
+        <SparkDoodle className="right-[6vw] top-[54%] w-10 rotate-[-14deg]" />
+        <BulbDoodle className="right-[2vw] top-[63%] w-14 rotate-[12deg]" />
+        <CloudDoodle className="right-[1vw] top-[72%] max-w-[9rem] rotate-[-8deg]" />
+        <PaperPlaneDoodle className="right-[4.5vw] top-[81%] w-24 rotate-[-9deg]" />
+        <RocketDoodle className="right-[5vw] top-[90%] w-14 rotate-[16deg]" />
+        <SparkDoodle className="right-[6vw] top-[97%] w-10 rotate-[10deg]" />
+
+        <div className="scribble-swoosh left-[4vw] top-[19%] h-16 w-36 rotate-[12deg]" />
+        <div className="scribble-swoosh right-[4vw] top-[31%] h-20 w-40 rotate-[-12deg]" />
+        <div className="scribble-swoosh left-[3vw] top-[48%] h-16 w-32 rotate-[-8deg]" />
+        <div className="scribble-swoosh right-[3.5vw] top-[59%] h-[4.25rem] w-36 rotate-[8deg]" />
+        <div className="scribble-swoosh left-[4vw] top-[76%] h-16 w-36 rotate-[10deg]" />
+        <div className="scribble-swoosh right-[4vw] top-[84%] h-20 w-40 rotate-[-10deg]" />
       </div>
 
       <div className="space-y-8">
         <Reveal>
-          <NotebookSheet className="paper-stack mx-auto max-w-6xl overflow-hidden">
-            <div className="section-kicker">
-              <span>✎</span>
-              <span>Dear Internet, meet my portfolio.</span>
-            </div>
-            <div className="relative">
-              <Twinkle className="absolute left-2 top-14 hidden w-7 rotate-[-10deg] sm:block" delay={0.1} />
-              <Twinkle className="absolute right-24 top-16 hidden w-8 rotate-[10deg] sm:block" delay={1.2} />
-              <motion.div
-                animate={{ y: [0, -6, 0], rotate: [0, 1.2, 0] }}
-                transition={{ duration: 4.8, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute right-0 top-0 hidden w-24 rotate-[8deg] sm:block"
-              >
-                <RocketDoodle className="h-auto w-full" />
+          <NotebookSheet className="paper-stack mx-auto max-w-6xl overflow-hidden" layoutSeed="hero">
+            <StaggerGroup className="relative" amount={0.12}>
+              <motion.div variants={staggerChild} className="section-kicker">
+                <span>✎</span>
+                <span>Dear Internet, meet my portfolio.</span>
               </motion.div>
+              <motion.div variants={staggerChild} className="relative">
+                <Twinkle className="absolute left-2 top-14 hidden w-7 rotate-[-10deg] sm:block" delay={0.1} />
+                <Twinkle className="absolute right-24 top-16 hidden w-8 rotate-[10deg] sm:block" delay={1.2} />
+                <div className="doodle-bob-md absolute right-0 top-0 hidden w-24 rotate-[8deg] sm:block">
+                  <RocketDoodle className="h-auto w-full" />
+                </div>
 
-              <h1 className="handwritten max-w-3xl text-[3.7rem] leading-[0.84] text-[#1d1815] sm:text-[6.2rem]">
-                {hero.name}
-              </h1>
+                <h1 className="handwritten max-w-3xl text-[3.7rem] leading-[0.84] text-[#1d1815] sm:text-[6.2rem]">
+                  {hero.name}
+                </h1>
 
-              <div className="mt-5 inline-flex rotate-[-1.2deg] rounded-[14px] border-[3px] border-[#2c2823] bg-[#f9f1df] px-6 py-3 shadow-[3px_4px_0_#9d8a6a]">
-                <span className="handwritten text-[1.8rem] text-[#201b18] sm:text-[2.2rem]">{hero.title}</span>
-              </div>
+                <div className="mt-5 inline-flex rotate-[-1.2deg] rounded-[14px] border-[3px] border-[#2c2823] bg-[#f9f1df] px-6 py-3 shadow-[3px_4px_0_#9d8a6a]">
+                  <span className="handwritten text-[1.8rem] text-[#201b18] sm:text-[2.2rem]">{hero.title}</span>
+                </div>
 
-              <p className="mt-5 max-w-2xl text-[1.45rem] leading-8 text-[#342f29] sm:text-[1.8rem] sm:leading-9">{hero.subtitle}</p>
+                <p className="body-copy mt-5 max-w-2xl text-[1.35rem] text-[#342f29] sm:text-[1.55rem]">{hero.subtitle}</p>
 
-              <div className="mt-8 flex flex-wrap items-center gap-4">
-                <NotebookButton href="#projects">{hero.ctaLabel}</NotebookButton>
-                <NotebookButton href="/resume/aamir-naved-resume.pdf" download variant="secondary">
-                  Download Resume
-                </NotebookButton>
-              </div>
+                <div className="mt-8 flex flex-wrap items-center gap-4">
+                  <NotebookButton href="#projects">{hero.ctaLabel}</NotebookButton>
+                  <NotebookButton href="/resume/aamir-naved-resume.pdf" download variant="secondary">
+                    Download Resume
+                  </NotebookButton>
+                </div>
 
-              <div className="mt-8 flex flex-wrap items-center justify-between gap-6">
-                <ArrowDoodle className="w-36 rotate-[4deg] sm:w-44" />
-                <div className="scribble-note">Scalable APIs</div>
-                <FloatCloud className="w-40 sm:w-48" delay={0.5} distance={10} />
-              </div>
+                <div className="mt-8 flex flex-wrap items-center justify-between gap-6">
+                  <ArrowDoodle className="w-36 rotate-[4deg] sm:w-44" />
+                  <div className="scribble-note">Scalable APIs</div>
+                  <FloatCloud className="w-40 sm:w-48" delay={0.5} distance={10} />
+                </div>
 
-              <div className="doodle-divider">
-                <div className="dash" />
-                <span className="micro-caption">systems • cloud • genai</span>
-                <div className="dash" />
-              </div>
-            </div>
+                <div className="doodle-divider">
+                  <div className="dash" />
+                  <span className="micro-caption">systems • cloud • genai</span>
+                  <div className="dash" />
+                </div>
+              </motion.div>
+            </StaggerGroup>
           </NotebookSheet>
         </Reveal>
 
@@ -149,29 +175,18 @@ export function HomePage() {
                 </ul>
                 <div className="doodle-divider">
                   <Twinkle className="w-7 rotate-[-10deg]" delay={0.2} />
-                  <motion.div
-                    animate={{ x: [0, 6, 0] }}
-                    transition={{ duration: 4.2, repeat: Infinity, ease: "easeInOut" }}
-                  >
+                  <div className="doodle-sway-x">
                     <ScribbleLoop className="h-12 w-36 rotate-[5deg]" />
-                  </motion.div>
+                  </div>
                   <Twinkle className="w-8 rotate-[14deg]" delay={1} />
                 </div>
               </div>
               <div className="relative flex justify-center md:justify-end">
                 <Twinkle className="absolute -left-2 top-4 w-9 rotate-[-12deg]" delay={0.7} />
-                <motion.div
-                  className="absolute bottom-4 left-0 w-24 rotate-[14deg]"
-                  animate={{ x: [0, 6, 0] }}
-                  transition={{ duration: 3.6, repeat: Infinity, ease: "easeInOut" }}
-                >
+                <div className="doodle-sway-x-sm absolute bottom-4 left-0 w-24 rotate-[14deg]">
                   <ArrowDoodle className="w-full" />
-                </motion.div>
-                <motion.div
-                  className="rotate-[1.8deg]"
-                  animate={{ y: [0, -4, 0] }}
-                  transition={{ duration: 4.4, repeat: Infinity, ease: "easeInOut" }}
-                >
+                </div>
+                <div className="doodle-bob-sm rotate-[1.8deg]">
                   <div className="sketch-frame flex min-h-[320px] w-[280px] flex-col justify-between p-5 sm:w-[320px]">
                     <div className="flex items-center justify-between">
                       <Twinkle className="w-7 rotate-[-12deg]" delay={0.3} />
@@ -189,7 +204,7 @@ export function HomePage() {
                       <RocketDoodle className="w-12 rotate-[10deg]" />
                     </div>
                   </div>
-                </motion.div>
+                </div>
               </div>
             </div>
           </NotebookSheet>
@@ -201,20 +216,19 @@ export function HomePage() {
             <div className="mb-6 flex flex-wrap items-center justify-between gap-4">
               <div className="mini-note rotate-[-0.8deg]">☑ built from real resume work</div>
               <div className="flex items-center gap-3">
-                <motion.div
-                  animate={{ x: [0, 8, 0], y: [0, -3, 0], rotate: [8, 12, 8] }}
-                  transition={{ duration: 4.6, repeat: Infinity, ease: "easeInOut" }}
-                >
+                <div className="doodle-plane">
                   <PaperPlaneDoodle className="w-16" />
-                </motion.div>
+                </div>
                 <Twinkle className="w-8 rotate-[18deg]" delay={0.8} />
               </div>
             </div>
-            <div className="space-y-6">
+            <StaggerGroup className="space-y-6" amount={0.08}>
               {projects.map((project) => (
-                <ProjectCard key={project.name} {...project} />
+                <motion.div key={project.name} variants={staggerChild}>
+                  <ProjectCard {...project} />
+                </motion.div>
               ))}
-            </div>
+            </StaggerGroup>
             <div className="doodle-divider">
               <div className="dash" />
               <span className="micro-caption">idea → architecture → shipped</span>
@@ -245,58 +259,43 @@ export function HomePage() {
                   </label>
                 ))}
                 <div className="skill-cloud">
-                  {["Microservices", "REST APIs", "GitHub Workflows", "Vertex AI"].map((item, index) => (
-                    <motion.span
-                      key={item}
-                      className="skill-badge"
-                      animate={{ y: [0, index % 2 === 0 ? -2 : 2, 0] }}
-                      transition={{ duration: 3 + index * 0.4, repeat: Infinity, ease: "easeInOut" }}
-                    >
-                      {item}
-                    </motion.span>
-                  ))}
+                  {["Microservices", "REST APIs", "GitHub Workflows", "Vertex AI"].map((item, index) => {
+                    const bob =
+                      index === 0
+                        ? "doodle-badge-up"
+                        : index === 1
+                          ? "doodle-badge-down"
+                          : index === 2
+                            ? "doodle-badge-up-slow"
+                            : "doodle-badge-down-slow";
+                    return (
+                      <span key={item} className={`skill-badge ${bob}`}>
+                        {item}
+                      </span>
+                    );
+                  })}
                 </div>
               </div>
 
               <div className="relative">
-                <motion.div
-                  className="laptop-sketch mx-auto max-w-md rotate-[1.4deg]"
-                  animate={{ y: [0, -3, 0] }}
-                  transition={{ duration: 4.8, repeat: Infinity, ease: "easeInOut" }}
-                >
+                <div className="doodle-laptop-float laptop-sketch mx-auto max-w-md rotate-[1.4deg]">
                   <div className="screen">
                     <div className="screen-line w-1/4" />
                     <div className="screen-line w-5/6" />
                     <div className="mt-3 grid grid-cols-3 gap-2">
-                      <motion.div className="screen-card h-10" animate={{ opacity: [0.65, 1, 0.65] }} transition={{ duration: 2.8, repeat: Infinity }} />
-                      <motion.div className="screen-card h-10 bg-[#cfe0b3]" animate={{ opacity: [1, 0.65, 1] }} transition={{ duration: 3.1, repeat: Infinity, delay: 0.6 }} />
-                      <motion.div className="screen-card h-10 bg-[#efd08c]" animate={{ opacity: [0.7, 1, 0.7] }} transition={{ duration: 2.5, repeat: Infinity, delay: 1 }} />
+                      <div className="screen-card doodle-pulse-op h-10" />
+                      <div className="screen-card doodle-pulse-op-alt h-10 bg-[#cfe0b3]" />
+                      <div className="screen-card doodle-pulse-op-alt2 h-10 bg-[#efd08c]" />
                     </div>
                     <div className="screen-line mt-3 w-2/5" />
                   </div>
                   <div className="keyboard" />
-                </motion.div>
-                <motion.span
-                  className="absolute left-2 top-1 text-3xl text-[#d4aa38]"
-                  animate={{ opacity: [0.4, 1, 0.4] }}
-                  transition={{ duration: 2.2, repeat: Infinity }}
-                >
-                  ✦
-                </motion.span>
-                <motion.span
-                  className="absolute right-4 top-0 text-3xl text-[#6589b8]"
-                  animate={{ opacity: [1, 0.45, 1] }}
-                  transition={{ duration: 2.8, repeat: Infinity, delay: 0.7 }}
-                >
-                  ✦
-                </motion.span>
-                <motion.div
-                  className="absolute -left-2 bottom-3 w-14 rotate-[-10deg]"
-                  animate={{ y: [0, -4, 0] }}
-                  transition={{ duration: 3.6, repeat: Infinity, ease: "easeInOut" }}
-                >
+                </div>
+                <span className="doodle-spark-gold absolute left-2 top-1 text-3xl text-[#d4aa38]">✦</span>
+                <span className="doodle-spark-blue absolute right-4 top-0 text-3xl text-[#6589b8]">✦</span>
+                <div className="doodle-bob-xs absolute -left-2 bottom-3 w-14 rotate-[-10deg]">
                   <BulbDoodle className="w-full" />
-                </motion.div>
+                </div>
                 <FloatCloud className="absolute bottom-[-1.5rem] right-0 w-32 rotate-[4deg]" delay={1.2} distance={7} />
               </div>
             </div>
@@ -338,19 +337,12 @@ export function HomePage() {
               ))}
             </div>
             <div className="mt-6 flex flex-wrap items-center justify-between gap-4">
-              <motion.div
-                animate={{ x: [0, 5, 0] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              >
+              <div className="doodle-sway-x-wide">
                 <ScribbleLoop className="h-12 w-40 rotate-[4deg]" />
-              </motion.div>
-              <motion.div
-                className="w-16 rotate-[-6deg]"
-                animate={{ y: [0, -4, 0] }}
-                transition={{ duration: 4.3, repeat: Infinity, ease: "easeInOut" }}
-              >
+              </div>
+              <div className="doodle-bob-sm w-16 rotate-[-6deg]">
                 <DatabaseDoodle className="w-full" />
-              </motion.div>
+              </div>
             </div>
           </NotebookSheet>
         </Reveal>
@@ -362,12 +354,9 @@ export function HomePage() {
               <div className="mini-note rotate-[-0.8deg]">Let&apos;s build something useful.</div>
               <div className="flex items-center gap-3">
                 <Twinkle className="w-8 rotate-[-8deg]" delay={0.4} />
-                <motion.div
-                  animate={{ x: [0, 6, 0], y: [0, -3, 0], rotate: [14, 18, 14] }}
-                  transition={{ duration: 4.4, repeat: Infinity, ease: "easeInOut" }}
-                >
+                <div className="doodle-plane-sm">
                   <PaperPlaneDoodle className="w-14" />
-                </motion.div>
+                </div>
               </div>
             </div>
             <div className="grid gap-8 md:grid-cols-[0.95fr_1.05fr]">
@@ -398,22 +387,14 @@ export function HomePage() {
                     <Twinkle className="w-8 rotate-[12deg]" delay={0.2} />
                   </div>
                   <div className="contact-doodle-card">
-                    <motion.div
-                      className="w-12 rotate-[-8deg]"
-                      animate={{ y: [0, -3, 0] }}
-                      transition={{ duration: 3.4, repeat: Infinity, ease: "easeInOut" }}
-                    >
+                    <div className="doodle-bob-xs w-12 rotate-[-8deg]">
                       <BulbDoodle className="w-full" />
-                    </motion.div>
+                    </div>
                   </div>
                   <div className="contact-doodle-card">
-                    <motion.div
-                      className="w-14 rotate-[10deg]"
-                      animate={{ x: [0, 5, 0], y: [0, -2, 0] }}
-                      transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                    >
+                    <div className="doodle-plane-wiggle w-14 rotate-[10deg]">
                       <PaperPlaneDoodle className="w-full" />
-                    </motion.div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -424,12 +405,9 @@ export function HomePage() {
                 </p>
                 <ContactForm />
                 <div className="mt-5 flex items-center justify-between gap-4">
-                  <motion.div
-                    animate={{ x: [0, -5, 0] }}
-                    transition={{ duration: 4.2, repeat: Infinity, ease: "easeInOut" }}
-                  >
+                  <div className="doodle-sway-x-neg">
                     <ScribbleLoop className="h-12 w-36 rotate-[-4deg]" />
-                  </motion.div>
+                  </div>
                   <FloatCloud className="w-24 rotate-[6deg]" delay={0.6} distance={6} />
                 </div>
               </div>

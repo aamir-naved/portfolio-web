@@ -22,21 +22,21 @@ export const projects = [
     description:
       "A privacy-focused goal accountability platform with Spring Boot and React, built with JWT authentication, CORS protection, collaborative monitoring, and PostgreSQL-backed goal storage.",
     tech: ["Java", "Spring Boot", "React", "PostgreSQL"],
-    accent: "rotate-[-1.4deg]",
+    tilt: -1.35,
   },
   {
     name: "Daily Task Update Solution",
     description:
       "A Slack-inspired task update system featuring React UI flows, OAuth-based security, Redis-backed session management, Spring Boot APIs, and fast dashboard reporting.",
     tech: ["React", "Spring Boot", "Redis", "Java"],
-    accent: "rotate-[1.1deg]",
+    tilt: 1.05,
   },
   {
     name: "Gemini Retail Search",
     description:
       "An AI-assisted retail search experience implemented with Gemini Pro LLM and Vertex AI, focused on advanced language processing and product discovery in a cloud-native environment.",
     tech: ["GCP", "Vertex AI", "Gemini", "Docker"],
-    accent: "rotate-[-0.9deg]",
+    tilt: -0.88,
   },
 ] as const;
 
