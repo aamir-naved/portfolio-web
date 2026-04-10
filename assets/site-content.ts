@@ -13,8 +13,40 @@ export const about = {
     "Working on microservices-based systems with Spring Boot, Spring Cloud, Kafka, and GitHub Workflows.",
     "Implementing cloud and AI features using GCP, Vertex AI, Docker, and Gemini-powered search experiences.",
     "Building full-stack product features when needed with React, PostgreSQL, and secure authentication flows.",
+    "Freelance: shipping mobile apps with Flutter—from telehealth flows to polished client products—alongside backend and API work.",
   ],
 };
+
+export const testimonials = [
+  {
+    quote:
+      "Aamir built our telemedicine app end-to-end in Flutter: patient booking, doctor dashboards, and smooth video consult flows. Communication was clear, milestones were reliable, and the app felt polished—not rushed. Our doctors and patients actually enjoy using it.",
+    name: "Priya S.",
+    role: "Product lead",
+    projectTag: "Telemedicine • Flutter",
+  },
+  {
+    quote:
+      "We hired Aamir for a mobile product with a tight timeline. He owned the Flutter UI, state, and integrations, asked the right questions early, and shipped builds we could show investors with confidence. I'd work with him again on the next release.",
+    name: "James R.",
+    role: "Founder",
+    projectTag: "Mobile app • Flutter",
+  },
+  {
+    quote:
+      "Professional, fast, and detail-oriented. Aamir translated vague requirements into a concrete app structure, handled API wiring cleanly, and fixed edge cases we hadn't thought of. The handoff docs made it easy for our team to take over.",
+    name: "Ananya K.",
+    role: "Engineering manager",
+    projectTag: "Freelance • APIs + mobile",
+  },
+  {
+    quote:
+      "Great experience from scoping to release. Aamir kept us in the loop, proposed sensible defaults when we were stuck, and delivered a stable build on both Android and iOS. Exactly what we needed from a freelance partner.",
+    name: "Marcus T.",
+    role: "Operations director",
+    projectTag: "Cross-platform app",
+  },
+] as const;
 
 export const projects = [
   {

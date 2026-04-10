@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Caveat, Kalam } from "next/font/google";
-import { PortfolioShell } from "@/components/portfolio-shell";
 import "./globals.css";
 
 /**
@@ -35,7 +34,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${kalam.variable} ${caveat.variable}`}>
       <body id="top" className={kalam.className}>
-        <PortfolioShell>{children}</PortfolioShell>
+        {children}
       </body>
     </html>
   );

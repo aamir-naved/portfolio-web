@@ -1,9 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { memo, useMemo } from "react";
-import { hoverTilt } from "@/lib/animations";
-import { ArrowDoodle, SparkDoodle } from "@/components/doodles";
+import { memo } from "react";
+import { ArrowDoodle, CodeBracesDoodle } from "@/components/doodles";
 import { NotebookButton } from "@/components/notebook-button";
 
 type ProjectCardProps = {
@@ -14,16 +12,8 @@ type ProjectCardProps = {
 };
 
 export const ProjectCard = memo(function ProjectCard({ name, description, tech, tilt }: ProjectCardProps) {
-  const variants = useMemo(() => hoverTilt(tilt), [tilt]);
-
   return (
-    <motion.article
-      variants={variants}
-      initial="rest"
-      whileHover="hover"
-      whileTap="tap"
-      className="sketch-panel p-5 md:p-6"
-    >
+    <article className="sketch-panel p-5 md:p-6" style={{ transform: `rotate(${tilt}deg)` }}>
       <div className="mb-6 grid gap-6 md:grid-cols-[1.1fr_0.9fr] md:gap-7">
         <div className="space-y-3">
           <div className="project-sketch-strip">
@@ -35,7 +25,7 @@ export const ProjectCard = memo(function ProjectCard({ name, description, tech, 
           <p className="body-copy text-[1.08rem] text-[#3b352f] sm:text-[1.18rem]">{description}</p>
         </div>
         <div className="relative min-h-[200px]">
-          <SparkDoodle className="absolute -left-2 -top-2 w-8 rotate-[-8deg]" />
+          <CodeBracesDoodle className="absolute -left-2 -top-2 w-9 rotate-[-8deg] opacity-95" />
           <ArrowDoodle className="absolute -bottom-3 right-8 w-24 rotate-[6deg]" />
           <div className="laptop-sketch">
             <div className="screen">
@@ -61,6 +51,6 @@ export const ProjectCard = memo(function ProjectCard({ name, description, tech, 
       <NotebookButton href="#contact" variant="secondary" className="inline-flex !text-[1.75rem]">
         View Project
       </NotebookButton>
-    </motion.article>
+    </article>
   );
 });

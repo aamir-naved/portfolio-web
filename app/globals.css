@@ -1,6 +1,5 @@
 @import "tailwindcss";
 @import "../styles/notebook.css";
-@import "../styles/doodle-animations.css";
 @import "../styles/utilities.css";
 
 :root {
@@ -13,8 +12,6 @@
   --shadow-warm: #a38e6e;
   --body-font: var(--font-kalam), "Segoe Print", cursive;
   --heading-font: var(--font-caveat), var(--font-kalam), cursive;
-  --motion-duration: 0.52s;
-  --motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 html {
@@ -69,27 +66,3 @@ h3 {
   letter-spacing: 0.02em;
 }
 
-/* Dev / A-B: PortfolioShell “Motion: Off” — kill CSS keyframes & transitions app-wide */
-html[data-animations="off"] *,
-html[data-animations="off"] *::before,
-html[data-animations="off"] *::after {
-  animation-duration: 0.01ms !important;
-  animation-iteration-count: 1 !important;
-  transition-duration: 0.01ms !important;
-  scroll-behavior: auto !important;
-}
-
-/* Floating motion toggle (styled in notebook.css to match theme) */
-.animation-dev-toggle-wrap {
-  position: fixed;
-  z-index: 9999;
-  right: 1rem;
-  bottom: 1rem;
-}
-
-@media (min-width: 640px) {
-  .animation-dev-toggle-wrap {
-    right: 1.25rem;
-    bottom: 1.25rem;
-  }
-}

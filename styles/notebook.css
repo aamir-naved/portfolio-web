@@ -188,11 +188,6 @@
   align-items: center;
   gap: 0.9rem;
   padding: 1rem 1.1rem;
-  transition: transform 0.2s ease;
-}
-
-.contact-row:hover {
-  transform: translateX(6px) rotate(-0.4deg);
 }
 
 .section-kicker {
@@ -279,6 +274,87 @@
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: #7b6a59;
+}
+
+.testimonial-card {
+  position: relative;
+  padding: 1.25rem 1.35rem 1.35rem;
+  border: 2.5px solid #2f2924;
+  border-radius: 18px 15px 20px 16px / 15px 18px 16px 20px;
+  background: rgba(252, 247, 234, 0.88);
+  box-shadow: 3px 4px 0 rgba(157, 138, 106, 0.82);
+}
+
+.testimonial-card::before {
+  content: "“";
+  position: absolute;
+  left: 0.65rem;
+  top: 0.15rem;
+  font-family: var(--heading-font), cursive;
+  font-size: 2.8rem;
+  line-height: 1;
+  color: rgba(212, 168, 56, 0.55);
+  pointer-events: none;
+}
+
+.testimonial-card__quote {
+  position: relative;
+  z-index: 1;
+  margin: 0 0 1rem;
+  padding-left: 0.25rem;
+  font-size: 1.12rem;
+  line-height: 1.62;
+  color: #3a322b;
+}
+
+@media (min-width: 640px) {
+  .testimonial-card__quote {
+    font-size: 1.22rem;
+  }
+}
+
+.testimonial-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.35rem 0.75rem;
+  padding-top: 0.5rem;
+  border-top: 2px dashed rgba(45, 40, 35, 0.28);
+}
+
+.testimonial-card__name {
+  font-family: var(--heading-font), cursive;
+  font-size: 1.5rem;
+  color: #1f1a17;
+}
+
+.testimonial-card__role {
+  font-size: 1.05rem;
+  color: #5a4f45;
+}
+
+.testimonial-card__tag {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.55rem;
+  border: 2px solid #2d2823;
+  border-radius: 999px;
+  background: rgba(251, 243, 223, 0.75);
+  font-size: 0.88rem;
+  color: #4f463d;
+}
+
+.testimonial-grid {
+  display: grid;
+  gap: 1.25rem;
+}
+
+@media (min-width: 768px) {
+  .testimonial-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
 }
 
 .project-sketch-strip {
@@ -423,57 +499,4 @@
   .contact-doodle-board {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-}
-
-/* Motion on/off dev toggle — matches sketch UI */
-.animation-dev-toggle {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem 0.75rem;
-  border: 2.5px solid #2f2924;
-  border-radius: 14px 12px 16px 13px / 12px 16px 13px 14px;
-  background: rgba(252, 247, 234, 0.94);
-  box-shadow: 3px 4px 0 rgba(157, 138, 106, 0.85);
-  font-family: var(--body-font);
-  font-size: 0.95rem;
-  color: var(--ink);
-  cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
-}
-
-.animation-dev-toggle:hover {
-  background: rgba(255, 252, 244, 0.98);
-}
-
-.animation-dev-toggle:active {
-  transform: translate(2px, 2px);
-  box-shadow: 1px 2px 0 rgba(157, 138, 106, 0.85);
-}
-
-html[data-animations="off"] .animation-dev-toggle:active {
-  transform: none;
-  box-shadow: 3px 4px 0 rgba(157, 138, 106, 0.85);
-}
-
-.animation-dev-toggle__label {
-  opacity: 0.85;
-}
-
-.animation-dev-toggle__pill {
-  min-width: 2.25rem;
-  text-align: center;
-  padding: 0.15rem 0.45rem;
-  border-radius: 999px;
-  border: 2px solid #2d2823;
-  font-weight: 700;
-  font-size: 0.88rem;
-}
-
-.animation-dev-toggle__pill.is-on {
-  background: rgba(188, 220, 180, 0.55);
-}
-
-.animation-dev-toggle__pill.is-off {
-  background: rgba(220, 200, 180, 0.65);
 }

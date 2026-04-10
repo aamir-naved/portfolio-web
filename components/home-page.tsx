@@ -1,30 +1,33 @@
 "use client";
 
-import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
-import type { CSSProperties } from "react";
-import { about, contact, experience, hero, projects, skills } from "@/assets/site-content";
+import { about, contact, experience, hero, projects, skills, testimonials } from "@/assets/site-content";
 import {
+  ApiFlowDoodle,
   ArrowDoodle,
-  BulbDoodle,
-  CloudDoodle,
+  CodeBracesDoodle,
+  ContainersDoodle,
   DatabaseDoodle,
-  PaperPlaneDoodle,
-  RocketDoodle,
+  GitBranchDoodle,
+  HttpBadgeDoodle,
+  LaptopDoodle,
+  MicrochipDoodle,
+  NetworkNodesDoodle,
   ScribbleLoop,
-  SparkDoodle,
+  ServerStackDoodle,
+  TerminalDoodle,
 } from "@/components/doodles";
 import { NotebookButton } from "@/components/notebook-button";
 import { NotebookSheet } from "@/components/notebook-sheet";
 import { ProjectCard } from "@/components/project-card";
-import { Reveal, StaggerGroup, useStaggerChildVariants } from "@/components/reveal";
+import { Reveal, StaggerGroup } from "@/components/reveal";
 
 const ContactForm = dynamic(
   () => import("@/components/contact-form").then((m) => m.ContactForm),
   {
     ssr: true,
     loading: () => (
-      <div className="sketch-panel mx-auto flex min-h-[260px] max-w-md animate-pulse flex-col gap-3 p-5">
+      <div className="sketch-panel mx-auto flex min-h-[260px] max-w-md flex-col gap-3 p-5">
         <div className="sketch-input h-[3.25rem] border-[#dccfb8] bg-[#f0e8d8]" />
         <div className="sketch-input h-[3.25rem] border-[#dccfb8] bg-[#f0e8d8]" />
         <div className="sketch-input h-[8.5rem] resize-none border-[#dccfb8] bg-[#f0e8d8]" />
@@ -33,68 +36,33 @@ const ContactForm = dynamic(
   },
 );
 
-function Twinkle({ className = "", delay = 0 }: { className?: string; delay?: number }) {
-  return (
-    <div className={`doodle-twinkle ${className}`} style={{ animationDelay: `${delay}s` }}>
-      <SparkDoodle className="w-full" />
-    </div>
-  );
-}
-
-function FloatCloud({
-  className = "",
-  delay = 0,
-  distance = 8,
-}: {
-  className?: string;
-  delay?: number;
-  distance?: number;
-}) {
-  return (
-    <div
-      className={`doodle-drift ${className}`}
-      style={
-        {
-          animationDelay: `${delay}s`,
-          "--doodle-drift-x": `${distance}px`,
-        } as CSSProperties
-      }
-    >
-      <CloudDoodle className="w-full" />
-    </div>
-  );
-}
-
 export function HomePage() {
-  const staggerChild = useStaggerChildVariants();
-
   return (
     <div className="relative mx-auto max-w-[88rem] px-4 py-6 sm:px-6 lg:px-10 lg:py-10">
       <div className="margin-doodles hidden xl:block" aria-hidden="true">
-        {/* Percentage `top` tracks full page height (skills → experience → contact included) */}
-        <SparkDoodle className="left-[3.5vw] top-[5%] w-12 rotate-[-12deg]" />
-        <CloudDoodle className="left-[1.2vw] top-[14%] w-40 rotate-[-7deg]" />
-        <PaperPlaneDoodle className="left-[4.2vw] top-[24%] w-24 rotate-[-16deg]" />
-        <SparkDoodle className="left-[6.5vw] top-[33%] w-10 rotate-[10deg]" />
-        <BulbDoodle className="left-[2vw] top-[42%] w-14 rotate-[-14deg]" />
-        <CloudDoodle className="left-[0.6vw] top-[52%] w-36 rotate-[5deg]" />
-        <PaperPlaneDoodle className="left-[4.8vw] top-[62%] w-24 rotate-[10deg]" />
-        <DatabaseDoodle className="left-[3vw] top-[71%] w-14 rotate-[-11deg]" />
-        <CloudDoodle className="left-[1.5vw] top-[80%] w-32 rotate-[-6deg]" />
-        <RocketDoodle className="left-[5vw] top-[89%] w-16 rotate-[18deg]" />
-        <SparkDoodle className="left-[7vw] top-[96%] w-11 rotate-[-6deg]" />
+        <TerminalDoodle className="left-[3.2vw] top-[5%] w-16 rotate-[-10deg]" />
+        <NetworkNodesDoodle className="left-[0.8vw] top-[13%] w-28 rotate-[-5deg]" />
+        <ApiFlowDoodle className="left-[3.5vw] top-[23%] w-36 rotate-[-8deg]" />
+        <CodeBracesDoodle className="left-[6.5vw] top-[32%] w-14 rotate-[12deg]" />
+        <MicrochipDoodle className="left-[2vw] top-[41%] w-20 rotate-[-11deg]" />
+        <ServerStackDoodle className="left-[1vw] top-[50%] w-[4.5rem] rotate-[4deg]" />
+        <LaptopDoodle className="left-[4.5vw] top-[60%] w-32 rotate-[-6deg]" />
+        <DatabaseDoodle className="left-[3vw] top-[70%] w-14 rotate-[-11deg]" />
+        <ContainersDoodle className="left-[0.8vw] top-[79%] w-28 rotate-[-4deg]" />
+        <GitBranchDoodle className="left-[5vw] top-[87%] w-16 rotate-[14deg]" />
+        <HttpBadgeDoodle className="left-[6.5vw] top-[95%] w-20 rotate-[-7deg]" />
 
-        <CloudDoodle className="right-[1.8vw] top-[8%] w-36 rotate-[8deg]" />
-        <SparkDoodle className="right-[5vw] top-[17%] w-12 rotate-[18deg]" />
-        <RocketDoodle className="right-[4vw] top-[26%] w-16 rotate-[22deg]" />
-        <PaperPlaneDoodle className="right-[2.2vw] top-[36%] w-28 rotate-[12deg]" />
-        <DatabaseDoodle className="right-[3.2vw] top-[45%] w-14 rotate-[-10deg]" />
-        <SparkDoodle className="right-[6vw] top-[54%] w-10 rotate-[-14deg]" />
-        <BulbDoodle className="right-[2vw] top-[63%] w-14 rotate-[12deg]" />
-        <CloudDoodle className="right-[1vw] top-[72%] max-w-[9rem] rotate-[-8deg]" />
-        <PaperPlaneDoodle className="right-[4.5vw] top-[81%] w-24 rotate-[-9deg]" />
-        <RocketDoodle className="right-[5vw] top-[90%] w-14 rotate-[16deg]" />
-        <SparkDoodle className="right-[6vw] top-[97%] w-10 rotate-[10deg]" />
+        <TerminalDoodle className="right-[1.5vw] top-[7%] w-[4.5rem] rotate-[8deg]" />
+        <LaptopDoodle className="right-[4vw] top-[16%] w-28 rotate-[10deg]" />
+        <ServerStackDoodle className="right-[2vw] top-[25%] w-20 rotate-[-14deg]" />
+        <ApiFlowDoodle className="right-[1vw] top-[35%] w-[8.5rem] rotate-[6deg]" />
+        <DatabaseDoodle className="right-[3.5vw] top-[44%] w-14 rotate-[10deg]" />
+        <NetworkNodesDoodle className="right-[5.5vw] top-[53%] w-24 rotate-[-12deg]" />
+        <MicrochipDoodle className="right-[2vw] top-[62%] w-[4.75rem] rotate-[9deg]" />
+        <CodeBracesDoodle className="right-[1vw] top-[71%] w-16 rotate-[-9deg]" />
+        <GitBranchDoodle className="right-[4.5vw] top-[80%] w-[3.75rem] rotate-[11deg]" />
+        <ContainersDoodle className="right-[2vw] top-[88%] w-28 rotate-[-6deg]" />
+        <LaptopDoodle className="right-[6vw] top-[96%] w-14 rotate-[10deg]" />
 
         <div className="scribble-swoosh left-[4vw] top-[19%] h-16 w-36 rotate-[12deg]" />
         <div className="scribble-swoosh right-[4vw] top-[31%] h-20 w-40 rotate-[-12deg]" />
@@ -107,16 +75,20 @@ export function HomePage() {
       <div className="space-y-8">
         <Reveal>
           <NotebookSheet className="paper-stack mx-auto max-w-6xl overflow-hidden" layoutSeed="hero">
-            <StaggerGroup className="relative" amount={0.12}>
-              <motion.div variants={staggerChild} className="section-kicker">
+            <StaggerGroup className="relative">
+              <div className="section-kicker">
                 <span>✎</span>
                 <span>Dear Internet, meet my portfolio.</span>
-              </motion.div>
-              <motion.div variants={staggerChild} className="relative">
-                <Twinkle className="absolute left-2 top-14 hidden w-7 rotate-[-10deg] sm:block" delay={0.1} />
-                <Twinkle className="absolute right-24 top-16 hidden w-8 rotate-[10deg] sm:block" delay={1.2} />
-                <div className="doodle-bob-md absolute right-0 top-0 hidden w-24 rotate-[8deg] sm:block">
-                  <RocketDoodle className="h-auto w-full" />
+              </div>
+              <div className="relative">
+                <div className="absolute left-0 top-10 hidden w-10 rotate-[-8deg] opacity-90 sm:block md:left-2">
+                  <CodeBracesDoodle className="h-auto w-full" />
+                </div>
+                <div className="absolute right-16 top-12 hidden w-14 rotate-[6deg] opacity-90 sm:block lg:right-28">
+                  <TerminalDoodle className="h-auto w-full" />
+                </div>
+                <div className="absolute right-0 top-0 hidden w-[5.5rem] rotate-[5deg] sm:block md:w-28">
+                  <LaptopDoodle className="h-auto w-full" />
                 </div>
 
                 <h1 className="handwritten max-w-3xl text-[3.7rem] leading-[0.84] text-[#1d1815] sm:text-[6.2rem]">
@@ -138,8 +110,10 @@ export function HomePage() {
 
                 <div className="mt-8 flex flex-wrap items-center justify-between gap-6">
                   <ArrowDoodle className="w-36 rotate-[4deg] sm:w-44" />
-                  <div className="scribble-note">Scalable APIs</div>
-                  <FloatCloud className="w-40 sm:w-48" delay={0.5} distance={10} />
+                  <div className="scribble-note">REST • microservices</div>
+                  <div className="hidden w-36 shrink-0 sm:block md:w-44">
+                    <ApiFlowDoodle className="h-auto w-full" />
+                  </div>
                 </div>
 
                 <div className="doodle-divider">
@@ -147,7 +121,7 @@ export function HomePage() {
                   <span className="micro-caption">systems • cloud • genai</span>
                   <div className="dash" />
                 </div>
-              </motion.div>
+              </div>
             </StaggerGroup>
           </NotebookSheet>
         </Reveal>
@@ -174,34 +148,44 @@ export function HomePage() {
                   ))}
                 </ul>
                 <div className="doodle-divider">
-                  <Twinkle className="w-7 rotate-[-10deg]" delay={0.2} />
-                  <div className="doodle-sway-x">
+                  <div className="w-10 rotate-[-8deg]">
+                    <TerminalDoodle className="h-auto w-full" />
+                  </div>
+                  <div>
                     <ScribbleLoop className="h-12 w-36 rotate-[5deg]" />
                   </div>
-                  <Twinkle className="w-8 rotate-[14deg]" delay={1} />
+                  <div className="w-10 rotate-[10deg]">
+                    <GitBranchDoodle className="h-auto w-full" />
+                  </div>
                 </div>
               </div>
               <div className="relative flex justify-center md:justify-end">
-                <Twinkle className="absolute -left-2 top-4 w-9 rotate-[-12deg]" delay={0.7} />
-                <div className="doodle-sway-x-sm absolute bottom-4 left-0 w-24 rotate-[14deg]">
+                <div className="absolute -left-1 top-4 w-12 rotate-[-10deg] md:-left-2">
+                  <MicrochipDoodle className="h-auto w-full" />
+                </div>
+                <div className="absolute bottom-4 left-0 w-24 rotate-[14deg]">
                   <ArrowDoodle className="w-full" />
                 </div>
-                <div className="doodle-bob-sm rotate-[1.8deg]">
+                <div className="rotate-[1.8deg]">
                   <div className="sketch-frame flex min-h-[320px] w-[280px] flex-col justify-between p-5 sm:w-[320px]">
                     <div className="flex items-center justify-between">
-                      <Twinkle className="w-7 rotate-[-12deg]" delay={0.3} />
+                      <div className="w-9 rotate-[-10deg]">
+                        <CodeBracesDoodle className="h-auto w-full" />
+                      </div>
                       <span className="micro-caption">backend notes</span>
-                      <Twinkle className="w-7 rotate-[12deg]" delay={1.1} />
+                      <div className="w-14 rotate-[6deg]">
+                        <HttpBadgeDoodle className="h-auto w-full" />
+                      </div>
                     </div>
                     <div className="space-y-4">
                       <div className="mini-note rotate-[-1deg]">Java + Spring</div>
                       <div className="mini-note rotate-[1deg]">Cloud + AI</div>
                       <div className="mini-note rotate-[-0.5deg]">Reliable systems</div>
                     </div>
-                    <div className="flex items-center justify-between gap-3">
-                      <BulbDoodle className="w-14 rotate-[-8deg]" />
-                      <CloudDoodle className="w-20 rotate-[6deg]" />
-                      <RocketDoodle className="w-12 rotate-[10deg]" />
+                    <div className="flex items-center justify-between gap-2">
+                      <ServerStackDoodle className="w-16 rotate-[-6deg]" />
+                      <NetworkNodesDoodle className="w-[4.25rem] rotate-[4deg]" />
+                      <DatabaseDoodle className="w-12 rotate-[-4deg]" />
                     </div>
                   </div>
                 </div>
@@ -215,20 +199,20 @@ export function HomePage() {
             <hr className="section-rule" />
             <div className="mb-6 flex flex-wrap items-center justify-between gap-4">
               <div className="mini-note rotate-[-0.8deg]">☑ built from real resume work</div>
-              <div className="flex items-center gap-3">
-                <div className="doodle-plane">
-                  <PaperPlaneDoodle className="w-16" />
+              <div className="flex items-center gap-4">
+                <div className="w-[7.5rem] rotate-[-4deg]">
+                  <ApiFlowDoodle className="h-auto w-full" />
                 </div>
-                <Twinkle className="w-8 rotate-[18deg]" delay={0.8} />
+                <div className="hidden w-12 rotate-[10deg] sm:block">
+                  <CodeBracesDoodle className="h-auto w-full" />
+                </div>
               </div>
             </div>
-            <StaggerGroup className="space-y-6" amount={0.08}>
+            <div className="space-y-6">
               {projects.map((project) => (
-                <motion.div key={project.name} variants={staggerChild}>
-                  <ProjectCard {...project} />
-                </motion.div>
+                <ProjectCard key={project.name} {...project} />
               ))}
-            </StaggerGroup>
+            </div>
             <div className="doodle-divider">
               <div className="dash" />
               <span className="micro-caption">idea → architecture → shipped</span>
@@ -240,9 +224,14 @@ export function HomePage() {
         <Reveal delay={0.15}>
           <NotebookSheet id="skills" title="My Skills" className="mx-auto max-w-6xl">
             <hr className="section-rule" />
-            <div className="mb-6 flex flex-wrap items-center justify-between gap-4">
+            <div className="relative mb-6 flex flex-wrap items-center justify-between gap-4">
               <div className="mini-note rotate-[1deg]">✎ tools I reach for often</div>
-              <ScribbleLoop className="h-12 w-32 rotate-[-6deg]" />
+              <div className="flex items-center gap-4">
+                <ScribbleLoop className="h-12 w-32 rotate-[-6deg]" />
+                <div className="hidden w-20 rotate-[7deg] md:block">
+                  <ServerStackDoodle className="h-auto w-full" />
+                </div>
+              </div>
             </div>
             <div className="grid gap-8 md:grid-cols-[0.95fr_1.05fr]">
               <div className="space-y-4">
@@ -259,44 +248,40 @@ export function HomePage() {
                   </label>
                 ))}
                 <div className="skill-cloud">
-                  {["Microservices", "REST APIs", "GitHub Workflows", "Vertex AI"].map((item, index) => {
-                    const bob =
-                      index === 0
-                        ? "doodle-badge-up"
-                        : index === 1
-                          ? "doodle-badge-down"
-                          : index === 2
-                            ? "doodle-badge-up-slow"
-                            : "doodle-badge-down-slow";
-                    return (
-                      <span key={item} className={`skill-badge ${bob}`}>
-                        {item}
-                      </span>
-                    );
-                  })}
+                  {["Microservices", "REST APIs", "GitHub Workflows", "Vertex AI"].map((item) => (
+                    <span key={item} className="skill-badge">
+                      {item}
+                    </span>
+                  ))}
                 </div>
               </div>
 
               <div className="relative">
-                <div className="doodle-laptop-float laptop-sketch mx-auto max-w-md rotate-[1.4deg]">
+                <div className="laptop-sketch mx-auto max-w-md rotate-[1.4deg]">
                   <div className="screen">
                     <div className="screen-line w-1/4" />
                     <div className="screen-line w-5/6" />
                     <div className="mt-3 grid grid-cols-3 gap-2">
-                      <div className="screen-card doodle-pulse-op h-10" />
-                      <div className="screen-card doodle-pulse-op-alt h-10 bg-[#cfe0b3]" />
-                      <div className="screen-card doodle-pulse-op-alt2 h-10 bg-[#efd08c]" />
+                      <div className="screen-card h-10" />
+                      <div className="screen-card h-10 bg-[#cfe0b3]" />
+                      <div className="screen-card h-10 bg-[#efd08c]" />
                     </div>
                     <div className="screen-line mt-3 w-2/5" />
                   </div>
                   <div className="keyboard" />
                 </div>
-                <span className="doodle-spark-gold absolute left-2 top-1 text-3xl text-[#d4aa38]">✦</span>
-                <span className="doodle-spark-blue absolute right-4 top-0 text-3xl text-[#6589b8]">✦</span>
-                <div className="doodle-bob-xs absolute -left-2 bottom-3 w-14 rotate-[-10deg]">
-                  <BulbDoodle className="w-full" />
+                <div className="absolute left-1 top-2 w-9 opacity-90">
+                  <CodeBracesDoodle className="h-auto w-full" />
                 </div>
-                <FloatCloud className="absolute bottom-[-1.5rem] right-0 w-32 rotate-[4deg]" delay={1.2} distance={7} />
+                <div className="absolute right-2 top-1 w-9 opacity-90">
+                  <TerminalDoodle className="h-auto w-full" />
+                </div>
+                <div className="absolute -left-2 bottom-3 w-[3.75rem] rotate-[-8deg]">
+                  <MicrochipDoodle className="h-auto w-full" />
+                </div>
+                <div className="absolute bottom-[-1.5rem] right-0 w-32 rotate-[5deg]">
+                  <NetworkNodesDoodle className="h-auto w-full" />
+                </div>
               </div>
             </div>
           </NotebookSheet>
@@ -336,13 +321,55 @@ export function HomePage() {
                 </article>
               ))}
             </div>
-            <div className="mt-6 flex flex-wrap items-center justify-between gap-4">
-              <div className="doodle-sway-x-wide">
+            <div className="mt-6 flex flex-wrap items-center justify-between gap-6">
+              <div className="flex items-end gap-4">
                 <ScribbleLoop className="h-12 w-40 rotate-[4deg]" />
+                <div className="hidden w-28 rotate-[-8deg] sm:block">
+                  <LaptopDoodle className="h-auto w-full" />
+                </div>
               </div>
-              <div className="doodle-bob-sm w-16 rotate-[-6deg]">
-                <DatabaseDoodle className="w-full" />
+              <div className="flex items-center gap-3">
+                <div className="w-14 rotate-[-6deg]">
+                  <DatabaseDoodle className="h-auto w-full" />
+                </div>
+                <div className="hidden w-12 rotate-[8deg] md:block">
+                  <GitBranchDoodle className="h-auto w-full" />
+                </div>
               </div>
+            </div>
+          </NotebookSheet>
+        </Reveal>
+
+        <Reveal delay={0.22}>
+          <NotebookSheet id="testimonials" title="Client testimonials" className="mx-auto max-w-6xl">
+            <hr className="section-rule" />
+            <div className="mb-6 flex flex-wrap items-start justify-between gap-4">
+              <div className="mini-note rotate-[-0.6deg]">✎ freelance & Flutter • kind words</div>
+              <div className="section-side-note rotate-[1deg]">
+                <strong>Privacy</strong>
+                Names and org details are kept light here—happy to share references when we talk about your project.
+              </div>
+            </div>
+            <div className="testimonial-grid">
+              {testimonials.map((t, index) => (
+                <blockquote
+                  key={`${t.name}-${index}`}
+                  className="testimonial-card m-0"
+                  style={{ transform: `rotate(${index % 2 === 0 ? "-0.4deg" : "0.45deg"})` }}
+                >
+                  <p className="testimonial-card__quote">{t.quote}</p>
+                  <footer className="testimonial-card__meta">
+                    <span className="testimonial-card__name">{t.name}</span>
+                    <span className="testimonial-card__role">{t.role}</span>
+                    <span className="testimonial-card__tag">{t.projectTag}</span>
+                  </footer>
+                </blockquote>
+              ))}
+            </div>
+            <div className="doodle-divider mt-8">
+              <div className="dash" />
+              <span className="micro-caption">build → ship → iterate</span>
+              <div className="dash" />
             </div>
           </NotebookSheet>
         </Reveal>
@@ -353,9 +380,11 @@ export function HomePage() {
             <div className="mb-6 flex flex-wrap items-center justify-between gap-4">
               <div className="mini-note rotate-[-0.8deg]">Let&apos;s build something useful.</div>
               <div className="flex items-center gap-3">
-                <Twinkle className="w-8 rotate-[-8deg]" delay={0.4} />
-                <div className="doodle-plane-sm">
-                  <PaperPlaneDoodle className="w-14" />
+                <div className="w-12 rotate-[-6deg]">
+                  <TerminalDoodle className="h-auto w-full" />
+                </div>
+                <div className="hidden w-[6.5rem] rotate-[5deg] sm:block">
+                  <ApiFlowDoodle className="h-auto w-full" />
                 </div>
               </div>
             </div>
@@ -381,19 +410,23 @@ export function HomePage() {
                     Back To Top
                   </NotebookButton>
                 </div>
-                <CloudDoodle className="mt-6 w-48" />
+                <div className="mt-6 w-full max-w-xs">
+                  <NetworkNodesDoodle className="h-auto w-full opacity-95" />
+                </div>
                 <div className="contact-doodle-board">
                   <div className="contact-doodle-card">
-                    <Twinkle className="w-8 rotate-[12deg]" delay={0.2} />
-                  </div>
-                  <div className="contact-doodle-card">
-                    <div className="doodle-bob-xs w-12 rotate-[-8deg]">
-                      <BulbDoodle className="w-full" />
+                    <div className="w-11 rotate-[8deg]">
+                      <GitBranchDoodle className="h-auto w-full" />
                     </div>
                   </div>
                   <div className="contact-doodle-card">
-                    <div className="doodle-plane-wiggle w-14 rotate-[10deg]">
-                      <PaperPlaneDoodle className="w-full" />
+                    <div className="w-14 rotate-[-6deg]">
+                      <MicrochipDoodle className="h-auto w-full" />
+                    </div>
+                  </div>
+                  <div className="contact-doodle-card">
+                    <div className="w-14 rotate-[5deg]">
+                      <LaptopDoodle className="h-auto w-full" />
                     </div>
                   </div>
                 </div>
@@ -401,14 +434,20 @@ export function HomePage() {
 
               <div>
                 <p className="mb-4 text-[1.3rem] leading-8 text-[#3d352f] sm:text-[1.65rem] sm:leading-9">
-                  If you&apos;re building systems that need dependable backend foundations, thoughtful APIs, or practical GenAI features, let&apos;s talk.
+                  If you&apos;re building systems that need dependable backend foundations, thoughtful APIs, practical
+                  GenAI features, or a Flutter freelance partner for a mobile product—let&apos;s talk.
                 </p>
                 <ContactForm />
-                <div className="mt-5 flex items-center justify-between gap-4">
-                  <div className="doodle-sway-x-neg">
-                    <ScribbleLoop className="h-12 w-36 rotate-[-4deg]" />
+                <div className="mt-5 flex flex-wrap items-center justify-between gap-4">
+                  <ScribbleLoop className="h-12 w-36 rotate-[-4deg]" />
+                  <div className="flex items-center gap-3">
+                    <div className="w-24 rotate-[4deg]">
+                      <ContainersDoodle className="h-auto w-full" />
+                    </div>
+                    <div className="hidden w-11 rotate-[-10deg] lg:block">
+                      <HttpBadgeDoodle className="h-auto w-full" />
+                    </div>
                   </div>
-                  <FloatCloud className="w-24 rotate-[6deg]" delay={0.6} distance={6} />
                 </div>
               </div>
             </div>

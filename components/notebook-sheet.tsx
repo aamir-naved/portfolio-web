@@ -1,8 +1,7 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
 import { type ReactNode, useMemo } from "react";
-import { getNotebookSheetLayout, notebookSheetHoverVariants } from "@/lib/animations";
+import { getNotebookSheetLayout } from "@/lib/notebook-sheet-layout";
 import { useNarrowScreen } from "@/lib/use-narrow-screen";
 
 type NotebookSheetProps = {
@@ -10,34 +9,27 @@ type NotebookSheetProps = {
   title?: string;
   className?: string;
   children: ReactNode;
-  /** Stable seed for layout when `id` is missing (e.g. hero block) */
   layoutSeed?: string;
 };
 
 export function NotebookSheet({ id, title, className = "", children, layoutSeed = "intro" }: NotebookSheetProps) {
   const narrow = useNarrowScreen();
-  const reduceMotion = useReducedMotion();
   const seed = id ?? title ?? layoutSeed;
 
   const layout = useMemo(() => getNotebookSheetLayout(seed), [seed]);
   const tiltFactor = narrow ? 0.45 : 1;
-  const restRotate = layout.rotate * tiltFactor;
-  const restY = layout.translateY * tiltFactor;
+  const rotate = layout.rotate * tiltFactor;
+  const ty = layout.translateY * tiltFactor;
   const translateX = layout.translateX * tiltFactor;
 
   return (
-    <motion.div
-      className="relative"
-      style={{ marginInlineStart: layout.marginInlineStart }}
-      variants={notebookSheetHoverVariants(restRotate, restY)}
-      initial="rest"
-      animate="rest"
-      whileHover={reduceMotion ? undefined : "hover"}
-    >
+    <div className="relative" style={{ marginInlineStart: layout.marginInlineStart }}>
       <section
         id={id}
         className={`notebook-sheet ${className}`}
-        style={{ transform: `translateX(${translateX}px)` }}
+        style={{
+          transform: `translateX(${translateX}px) rotate(${rotate}deg) translateY(${ty}px)`,
+        }}
       >
         {title ? (
           <div className="mb-6 flex items-center gap-3">
@@ -48,6 +40,6 @@ export function NotebookSheet({ id, title, className = "", children, layoutSeed 
         ) : null}
         {children}
       </section>
-    </motion.div>
+    </div>
   );
 }
