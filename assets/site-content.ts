@@ -61,6 +61,10 @@ export const projects = [
       "End-to-end monetizable telehealth: pay-per-visit and subscriptions, from registration through consultation to PDF delivery. Stripe Checkout with webhooks, idempotent backend state, and state machines for payments, appointments, and consultations. Payment-gated booking, doctor notes, PDF generation, cloud storage, and email. Modular monolith with clear domains (Auth, Patient, Payment, Booking, Consultation). Delivered for international clients (€15,000+ in project revenue).",
     tech: ["Flutter", "React", "Java", "Spring Boot", "PostgreSQL", "Stripe", "Terraform", "Docker", "AWS"],
     tilt: -1.2,
+    image: "/projects/telemedicine.png",
+    imageMatte: true,
+    imageAlt:
+      "Hand-drawn telemedicine sketch on lined notebook paper: TM logo, phones, stethoscope, and TELEMEDICINE label.",
   },
   {
     name: "Goal accountability webapp",
@@ -68,6 +72,10 @@ export const projects = [
       "Full-stack goal tracking with Spring Boot and React, JWT authentication, and an accountability model with mutual consent. Real-time updates via WebSockets. PostgreSQL schema for relationships and activity. Deployed on Railway and Vercel.",
     tech: ["Java", "Spring Boot", "React", "PostgreSQL", "JWT", "Railway", "Vercel"],
     tilt: 1.05,
+    image: "/projects/goals.png",
+    imageMatte: true,
+    imageAlt:
+      "Hand-drawn goals sketch on lined notebook paper: goals, progress, and accountability.",
   },
 ] as const;
 

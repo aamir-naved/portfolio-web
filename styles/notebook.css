@@ -415,6 +415,24 @@
   }
 }
 
+/* Project card visual: no extra “card” chrome—art sits on the same sketch-panel paper */
+.project-card-visual-embed {
+  position: relative;
+}
+
+.project-card-visual-frame {
+  background: transparent;
+}
+
+.project-card-visual-img {
+  background: transparent !important;
+}
+
+/* Matte handled in component via SVG feColorMatrix (luminance → alpha); keep colors normal */
+.project-card-visual-img--matte {
+  mix-blend-mode: normal;
+}
+
 .project-sketch-strip {
   display: flex;
   flex-wrap: wrap;
