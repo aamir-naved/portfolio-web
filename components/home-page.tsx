@@ -1,7 +1,16 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { about, contact, experience, hero, projects, skills, testimonials } from "@/assets/site-content";
+import {
+  about,
+  contact,
+  experience,
+  hero,
+  projects,
+  skillBadges,
+  skills,
+  testimonials,
+} from "@/assets/site-content";
 import {
   ApiFlowDoodle,
   ArrowDoodle,
@@ -111,7 +120,7 @@ export function HomePage() {
 
                 <div className="mt-8 flex flex-wrap items-center justify-between gap-6">
                   <ArrowDoodle className="w-36 rotate-[4deg] sm:w-44" />
-                  <div className="scribble-note">REST • microservices</div>
+                  <div className="scribble-note">Kafka • microservices</div>
                   <div className="hidden w-36 shrink-0 sm:block md:w-44">
                     <ApiFlowDoodle className="h-auto w-full" />
                   </div>
@@ -119,7 +128,7 @@ export function HomePage() {
 
                 <div className="doodle-divider">
                   <div className="dash" />
-                  <span className="micro-caption">systems • cloud • genai</span>
+                  <span className="micro-caption">distributed systems • cloud • genai</span>
                   <div className="dash" />
                 </div>
               </div>
@@ -179,9 +188,9 @@ export function HomePage() {
                       </div>
                     </div>
                     <div className="space-y-4">
-                      <div className="mini-note rotate-[-1deg]">Java + Spring</div>
-                      <div className="mini-note rotate-[1deg]">Cloud + AI</div>
-                      <div className="mini-note rotate-[-0.5deg]">Reliable systems</div>
+                      <div className="mini-note rotate-[-1deg]">Java • Spring • Kafka</div>
+                      <div className="mini-note rotate-[1deg]">GCP • AWS • AI</div>
+                      <div className="mini-note rotate-[-0.5deg]">Ship calm backends</div>
                     </div>
                     <div className="flex items-center justify-between gap-2">
                       <ServerStackDoodle className="w-16 rotate-[-6deg]" />
@@ -199,7 +208,7 @@ export function HomePage() {
           <NotebookSheet id="projects" title="My Projects" className="mx-auto max-w-6xl">
             <hr className="section-rule" />
             <div className="mb-6 flex flex-wrap items-center justify-between gap-4">
-              <div className="mini-note rotate-[-0.8deg]">☑ built from real resume work</div>
+              <div className="mini-note rotate-[-0.8deg]">☑ matches my latest resume</div>
               <div className="flex items-center gap-4">
                 <div className="w-[7.5rem] rotate-[-4deg]">
                   <ApiFlowDoodle className="h-auto w-full" />
@@ -249,7 +258,7 @@ export function HomePage() {
                   </label>
                 ))}
                 <div className="skill-cloud">
-                  {["Microservices", "REST APIs", "GitHub Workflows", "Vertex AI"].map((item) => (
+                  {skillBadges.map((item) => (
                     <span key={item} className="skill-badge">
                       {item}
                     </span>
@@ -446,8 +455,7 @@ export function HomePage() {
 
               <div>
                 <p className="mb-4 text-[1.3rem] leading-8 text-[#3d352f] sm:text-[1.65rem] sm:leading-9">
-                  Whether it&apos;s backend work, APIs, cloud and GenAI projects, or a Flutter build—if it sounds like a
-                  fit, I&apos;d love to hear from you.
+                  If you need backend and distributed systems work, cloud and GenAI integrations, or a disciplined full-stack build (React / Flutter)—and it sounds like a fit—I&apos;d love to hear from you.
                 </p>
                 <ContactForm />
                 <div className="mt-5 flex flex-wrap items-center justify-between gap-4">

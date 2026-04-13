@@ -22,8 +22,9 @@ const caveat = Caveat({
 });
 
 export const metadata: Metadata = {
-  title: "Aamir Naved | Backend Engineer",
-  description: "Notebook-style portfolio for Aamir Naved, Backend Engineer building scalable systems and GenAI apps.",
+  title: "Aamir Naved | Backend Software Engineer",
+  description:
+    "Backend software engineer in Hyderabad—microservices, Java & Spring Boot, Kafka, GCP, Vertex AI, and full-stack delivery with React and Flutter.",
 };
 
 export default function RootLayout({

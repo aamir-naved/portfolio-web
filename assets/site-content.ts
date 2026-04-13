@@ -1,25 +1,26 @@
 export const hero = {
   name: "Aamir Naved",
-  title: "Software Engineer",
-  subtitle: "Building Microservices, Goal-Driven Products & GenAI Solutions",
+  title: "Backend Software Engineer",
+  subtitle:
+    "Distributed systems, cloud-native backends, and LLM-powered workflows—from high-throughput microservices to commercial telehealth and full-stack products.",
   ctaLabel: "View My Projects",
 };
 
 export const about = {
   eyebrow: "About Me",
   summary:
-    "Software engineer based in Hyderabad with a background in Computer Science and Engineering from Integral University. I build backend-heavy products with Java, Spring Boot, Python, GCP, and modern microservice patterns, with a growing focus on GenAI and cloud-native systems.",
+    "Backend engineer in Hyderabad. I build and evolve microservices and cloud backends with Java, Spring Boot, Kafka, and Python—plus GenAI integrations with Vertex AI (Gemini)—and ship full-stack product slices with React, Flutter, and PostgreSQL when the problem calls for it.",
   details: [
-    "Working on microservices-based systems with Spring Boot, Spring Cloud, Kafka, and GitHub Workflows.",
-    "Implementing cloud and AI features using GCP, Vertex AI, Docker, and Gemini-powered search experiences.",
-    "Building full-stack product features when needed with React, PostgreSQL, and secure authentication flows.",
-    "Freelance: shipping mobile apps with Flutter—from telehealth flows to polished client products—alongside backend and API work.",
+    "B.Tech in Computer Science & Engineering from Integral University (First Division with Honours, GPA 9.24/10).",
+    "At Egen Data I work on Java/Spring Boot/Kafka microservices, system design for sync vs async trade-offs, Django services with Vertex AI, and GCP deployments (e.g. Cloud Run, BigQuery, Cloud Storage) with reliability patterns for external failures.",
+    "Earlier at Nucleus Software: PAN validation and reporting at scale, and multi-threaded pipelines across five databases producing millions of scheduled records.",
+    "Certifications: Google Associate Cloud Engineer; Programming in Java (IIT Kharagpur, 86%); The Joy of Computing using Python (IIT Madras, 87%).",
   ],
 };
 
 /**
  * Client quotes for the testimonials rail. To add one: push a new object with the same
- * shape—`quote`, `name`, `role`, `projectTag` (short topic line). Cards scroll sideways,
+ * shape—`quote`, `name`, `role`, and `projectTag` (short topic line). Cards scroll sideways,
  * so the section stays compact no matter how many you add.
  */
 export const testimonials = [
@@ -55,58 +56,70 @@ export const testimonials = [
 
 export const projects = [
   {
-    name: "Goal Accountability Webapp",
+    name: "Telemedicine platform (commercial)",
     description:
-      "A privacy-focused goal accountability platform with Spring Boot and React, built with JWT authentication, CORS protection, collaborative monitoring, and PostgreSQL-backed goal storage.",
-    tech: ["Java", "Spring Boot", "React", "PostgreSQL"],
-    tilt: -1.35,
+      "End-to-end monetizable telehealth: pay-per-visit and subscriptions, from registration through consultation to PDF delivery. Stripe Checkout with webhooks, idempotent backend state, and state machines for payments, appointments, and consultations. Payment-gated booking, doctor notes, PDF generation, cloud storage, and email. Modular monolith with clear domains (Auth, Patient, Payment, Booking, Consultation). Delivered for international clients (€15,000+ in project revenue).",
+    tech: ["Flutter", "React", "Java", "Spring Boot", "PostgreSQL", "Stripe", "Terraform", "Docker", "AWS"],
+    tilt: -1.2,
   },
   {
-    name: "Daily Task Update Solution",
+    name: "Goal accountability webapp",
     description:
-      "A Slack-inspired task update system featuring React UI flows, OAuth-based security, Redis-backed session management, Spring Boot APIs, and fast dashboard reporting.",
-    tech: ["React", "Spring Boot", "Redis", "Java"],
+      "Full-stack goal tracking with Spring Boot and React, JWT authentication, and an accountability model with mutual consent. Real-time updates via WebSockets. PostgreSQL schema for relationships and activity. Deployed on Railway and Vercel.",
+    tech: ["Java", "Spring Boot", "React", "PostgreSQL", "JWT", "Railway", "Vercel"],
     tilt: 1.05,
-  },
-  {
-    name: "Gemini Retail Search",
-    description:
-      "An AI-assisted retail search experience implemented with Gemini Pro LLM and Vertex AI, focused on advanced language processing and product discovery in a cloud-native environment.",
-    tech: ["GCP", "Vertex AI", "Gemini", "Docker"],
-    tilt: -0.88,
   },
 ] as const;
 
+/** Primary checklist in the Skills section */
 export const skills = [
   "Java",
   "Python",
+  "Go",
   "Spring Boot",
-  "Spring Cloud",
-  "GCP",
+  "Django & REST APIs",
+  "Microservices",
   "PostgreSQL",
   "Kafka",
   "Docker",
-];
+  "Terraform",
+  "GCP & AWS",
+  "Vertex AI (Gemini)",
+] as const;
+
+/** Extra tags shown in the skills “cloud” strip */
+export const skillBadges = [
+  "Redis",
+  "MySQL",
+  "ArgoCD",
+  "GraphQL",
+  "Flutter",
+  "Git",
+  "Stripe",
+  "WebSockets",
+] as const;
 
 export const experience = [
   {
-    company: "SpringML India Development Center",
-    period: "Jun 2024–Present",
+    company: "Egen Data Private Limited",
+    period: "Jun 2024 – Present",
     bullets: [
-      "Contributed to a microservices-based project using Java, Spring Boot, Spring Cloud, Kafka, and GitHub Workflows.",
-      "Participated in system design discussions for trading and prediction workflows, with a focus on scalable asynchronous processing and reliable data exchange.",
-      "Built backend services with Python, Django 5, Google Cloud, Vertex AI, and Docker, and integrated Google Gemini Pro LLM for advanced retail search use cases.",
+      "Built and maintained microservices with Java, Spring Boot, and Kafka for high-throughput workflows across distributed systems.",
+      "Contributed to re-architecture by evaluating synchronous vs asynchronous communication—improving scalability and fault isolation.",
+      "Developed Python and Django backends integrating Vertex AI (Gemini Pro) for LLM-powered workflows.",
+      "Designed and deployed cloud-native services on GCP (Cloud Run, BigQuery, Cloud Storage) for scalable, cost-efficient pipelines.",
+      "Improved reliability with retry-safe workflows and resilient handling of external failures (LLMs, third-party APIs).",
     ],
   },
   {
     company: "Nucleus Software Exports Limited",
-    period: "Jan 2023–Jun 2024",
+    period: "Jan 2023 – Jun 2024",
     bullets: [
-      "Built a PAN validation and report generation system with Java 8 and Spring Boot that improved validation efficiency and maintained SONAR-compliant code quality.",
-      "Developed a file writing utility that processed data from five databases using Multi-Threading and Spring Scheduler, enabling over 2.5 million records to be written into distinct files on schedule.",
+      "Built a PAN validation and reporting system with Java and Spring Boot, improving data accuracy by about 20% across millions of records.",
+      "Designed a multi-threaded data processing pipeline pulling from five databases and generating 2.5M+ records, optimizing runtime with concurrency and scheduling.",
     ],
   },
-];
+] as const;
 
 export const contact = {
   email: "aamirnaved0020@gmail.com",
